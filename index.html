@@ -49,13 +49,16 @@
       font-size: 2rem;
       margin-bottom: 20px;
     }
-    input, select {
+    input, select, textarea {
       padding: 10px;
       width: 100%;
       box-sizing: border-box;
       border: 1px solid #ccc;
       border-radius: 5px;
       margin-bottom: 15px;
+      font-size: 1rem;
+      font-family: inherit;
+      resize: vertical;
     }
     button {
       padding: 12px 20px;
@@ -65,6 +68,9 @@
       border-radius: 5px;
       cursor: pointer;
       margin-right: 10px;
+      font-size: 1rem;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
     }
     button:hover {
       background-color: #0056b3;
@@ -72,6 +78,7 @@
     .button-row {
       display: flex;
       flex-wrap: wrap;
+      gap: 10px;
     }
     .cards {
       display: grid;
@@ -122,6 +129,10 @@
       text-align: center;
       padding: 20px;
     }
+    #status {
+      margin-top: 15px;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
@@ -131,7 +142,7 @@
   <nav>
     <a href="#start">Start</a>
     <a href="#vorschlaege">Vorschläge</a>
-    <a href="#preisrechner">Preis</a>
+    <a href="#anfrage">Anfrage</a>
     <a href="#kontakt">Kontakt</a>
     <a href="#impressum">Impressum</a>
     <a href="#datenschutz">Datenschutz</a>
@@ -140,7 +151,7 @@
 
 <section id="start">
   <h2>Willkommen bei MyTaxiStuttgart</h2>
-  <p>Buche deine Fahrt oder berechne den Preis direkt online.</p>
+  <p>Buche deine Fahrt oder sende eine Anfrage direkt online.</p>
 </section>
 
 <section id="vorschlaege">
@@ -150,47 +161,47 @@
       <img src="https://i.ibb.co/fTdNcK2/istockphoto-1024274518-612x612.jpg" alt="Fahrt" />
       <h3>Fahrt</h3>
       <p>Buche deine Fahrt und komme sicher und pünktlich an dein Ziel.</p>
-      <a href="#preisrechner" class="btn">Details</a>
+      <a href="#anfrage" class="btn">Anfrage senden</a>
     </div>
     <div class="card">
       <img src="https://i.ibb.co/Qj8LXhxm/reserve-clock.png" alt="Reservieren" />
       <h3>Reserviere</h3>
       <p>Plane deine Fahrt im Voraus, damit du entspannt losfahren kannst.</p>
-      <a href="#preisrechner" class="btn">Details</a>
+      <a href="#anfrage" class="btn">Anfrage senden</a>
     </div>
     <div class="card">
       <img src="https://i.ibb.co/q3FQ6BR5/Bildschirmfoto-2025-07-14-um-12-13-17.png" alt="Kurier" />
       <h3>Kurier*in</h3>
       <p>Schnelle Lieferfahrten direkt mit dem Taxi – lokal und zuverlässig.</p>
-      <a href="#kontakt" class="btn">Details</a>
+      <a href="#kontakt" class="btn">Kontakt</a>
     </div>
     <div class="card">
       <img src="https://i.ibb.co/gQpNDkV/Bildschirmfoto-2025-07-14-um-12-15-07.png" alt="Krankenfahrten" />
       <h3>Krankenfahrten</h3>
       <p>Wir bringen dich sicher zu Arztterminen oder zur Klinik – mit Rücksicht & Komfort.</p>
-      <a href="#kontakt" class="btn">Details</a>
+      <a href="#kontakt" class="btn">Kontakt</a>
     </div>
   </div>
 </section>
 
-<section id="preisrechner">
-  <h2>Fahrtpreis & Navigation</h2>
-  <form id="preisForm">
+<section id="anfrage">
+  <h2>Anfrage senden</h2>
+  <form id="anfrageForm" onsubmit="return false;">
     <label for="startadresse">Startadresse:</label>
     <input type="text" id="startadresse" placeholder="z.B. Hauptstr. 1, Stuttgart" required>
 
     <label for="zieladresse">Zieladresse:</label>
     <input type="text" id="zieladresse" placeholder="z.B. Bahnhofstr. 5, Stuttgart" required>
 
-    <label for="km">Entfernung (km):</label>
-    <input type="number" step="0.1" id="km" placeholder="z.B. 5.2" required>
+    <label for="datum">Datum & Uhrzeit:</label>
+    <input type="datetime-local" id="datum" required>
 
     <div class="button-row">
-      <button type="button" onclick="preisBerechnen()">Preis berechnen</button>
-      <button type="button" onclick="googleNavigation()">Navigation starten</button>
+      <button type="button" onclick="sendeWhatsApp()">WhatsApp senden</button>
+      <button type="button" onclick="sendeEmail()">E-Mail senden</button>
     </div>
   </form>
-  <p id="ausgabe" style="font-weight: bold; margin-top: 10px;"></p>
+  <p id="status"></p>
 </section>
 
 <section id="kontakt">
@@ -237,38 +248,55 @@
 </footer>
 
 <script>
-  function preisBerechnen() {
-    const km = parseFloat(document.getElementById("km").value);
-    const ausgabe = document.getElementById("ausgabe");
+  const whatsappNummer = '4917684229016'; // Deine WhatsApp-Nummer im internationalen Format ohne "+"
 
-    if (isNaN(km) || km <= 0) {
-      ausgabe.innerText = "Bitte gültige Kilometerzahl eingeben.";
+  function sendeWhatsApp() {
+    const start = document.getElementById('startadresse').value.trim();
+    const ziel = document.getElementById('zieladresse').value.trim();
+    const datum = document.getElementById('datum').value;
+    const status = document.getElementById('status');
+
+    if (!start || !ziel || !datum) {
+      alert('Bitte alle Felder ausfüllen.');
       return;
     }
 
-    const grundpreis = 4.30;
-    let preis = grundpreis;
+    const text = 
+      `Hallo MyTaxiStuttgart,%0A` +
+      `ich möchte eine Fahrt anfragen:%0A` +
+      `Start: ${encodeURIComponent(start)}%0A` +
+      `Ziel: ${encodeURIComponent(ziel)}%0A` +
+      `Datum: ${encodeURIComponent(datum)}`;
 
-    if (km <= 3) {
-      preis += km * 3.30;
-    } else {
-      preis += 3 * 3.30 + (km - 3) * 2.50;
-    }
-
-    ausgabe.innerText = `Gesamtkosten: €${preis.toFixed(2)}`;
+    const url = `https://wa.me/${whatsappNummer}?text=${text}`;
+    window.open(url, '_blank');
+    status.textContent = 'WhatsApp Anfrage geöffnet.';
   }
 
-  function googleNavigation() {
-    const start = document.getElementById("startadresse").value.trim();
-    const ziel = document.getElementById("zieladresse").value.trim();
+  function sendeEmail() {
+    const start = document.getElementById('startadresse').value.trim();
+    const ziel = document.getElementById('zieladresse').value.trim();
+    const datum = document.getElementById('datum').value;
+    const status = document.getElementById('status');
 
-    if (!start || !ziel) {
-      alert("Bitte Start- und Zieladresse eingeben.");
+    if (!start || !ziel || !datum) {
+      alert('Bitte alle Felder ausfüllen.');
       return;
     }
 
-    const url = `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(start)}&destination=${encodeURIComponent(ziel)}`;
-    window.open(url, "_blank");
+    const subject = encodeURIComponent('Fahrtenanfrage MyTaxiStuttgart');
+    const body = encodeURIComponent(
+      `Hallo MyTaxiStuttgart,\n\n` +
+      `ich möchte eine Fahrt anfragen:\n` +
+      `Start: ${start}\n` +
+      `Ziel: ${ziel}\n` +
+      `Datum: ${datum}\n\n` +
+      `Bitte um Rückmeldung.`
+    );
+
+    const mailtoLink = `mailto:taxi.info@mail.de?subject=${subject}&body=${body}`;
+    window.location.href = mailtoLink;
+    status.textContent = 'E-Mail Anfrage geöffnet.';
   }
 </script>
 
