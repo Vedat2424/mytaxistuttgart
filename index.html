@@ -52,11 +52,6 @@
       color: #222;
       text-align: center;
     }
-    label {
-      font-weight: 600;
-      display: block;
-      margin-bottom: 5px;
-    }
     input, select {
       padding: 10px;
       width: 100%;
@@ -69,8 +64,7 @@
     .radio-group-vertical {
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
-      gap: 6px;
+      gap: 10px;
       margin-bottom: 15px;
       font-size: 1rem;
     }
@@ -78,10 +72,6 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      cursor: pointer;
-    }
-    label.radio input {
-      cursor: pointer;
     }
     button {
       padding: 12px 20px;
@@ -92,10 +82,6 @@
       cursor: pointer;
       font-size: 1rem;
       font-weight: bold;
-      display: block;
-      margin-top: 10px;
-      width: 100%;
-      max-width: 200px;
     }
     button:hover {
       background-color: #0056b3;
@@ -120,6 +106,14 @@
     .card:hover {
       transform: scale(1.02);
     }
+    footer {
+      background: #222;
+      color: #ccc;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+      border-radius: 0 0 8px 8px;
+    }
     #start p.intro-text {
       font-size: 1.2rem;
       color: #666;
@@ -133,52 +127,7 @@
     #datenschutz, #impressum {
       font-size: 0.9rem;
       color: #555;
-      padding: 20px 0 0 0;
-      max-width: 1000px;
-      margin: 0 auto 30px auto;
-      border-radius: 0 0 8px 8px;
-    }
-    #impressum p {
-      margin: 5px 0;
-    }
-    #impressum p strong {
-      font-weight: 600;
-    }
-    .no-break {
-      white-space: nowrap;
-    }
-    footer {
-      background: #222;
-      color: #ccc;
-      text-align: center;
       padding: 20px;
-      margin-top: 40px;
-      border-radius: 0 0 8px 8px;
-    }
-
-    /* Mobile Optimierungen */
-    @media (max-width: 600px) {
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      nav a {
-        margin: 8px 10px 0 0;
-        font-size: 1rem;
-      }
-      section {
-        margin: 20px 10px;
-        padding: 20px;
-      }
-      .cards {
-        grid-template-columns: 1fr;
-      }
-      button {
-        max-width: 100%;
-      }
-      .radio-group-vertical {
-        gap: 12px;
-      }
     }
   </style>
 </head>
@@ -228,9 +177,9 @@
     <label for="uhrzeit">Uhrzeit:</label>
     <input type="time" id="uhrzeit" required>
 
-    <div class="radio-group-vertical" style="margin-top: 0;">
-      <label class="radio"><input type="radio" name="versand" value="whatsapp" checked> WhatsApp</label>
-      <label class="radio"><input type="radio" name="versand" value="email"> E-Mail</label>
+    <div class="radio-group-vertical">
+      <label class="radio"><input type="radio" name="versand" value="whatsapp" checked> whatsapp</label>
+      <label class="radio"><input type="radio" name="versand" value="email"> email</label>
     </div>
 
     <button type="submit">Anfrage senden</button>
@@ -239,7 +188,7 @@
 
   <div style="text-align: center; margin-top: 40px;">
     <h3>Wir akzeptieren folgende Zahlungsmethoden:</h3>
-    <img src="https://i.ibb.co/7JPtd954/Bildschirmfoto-2025-07-14-um-15-23-45.png" alt="Zahlungsmethoden" style="max-width: 400px; width: 100%; height: auto; margin-top: 10px;">
+    <img src="https://i.ibb.co/W493YLLP/Bildschirmfoto-2025-07-14-um-15-31-58.png" alt="Zahlungsmethoden" style="max-width: 400px; width: 100%; height: auto; margin-top: 10px;">
   </div>
 </section>
 
@@ -259,7 +208,8 @@
     70771 Leinfelden-Echterdingen
   </p>
   <p><strong>Kontakt:</strong><br>
-    Telefon: <a href="tel:+4917684229016">0176 84229016</a> | <span class="no-break">E-Mail:</span> <a href="mailto:taxi.info@mail.de">taxi.info@mail.de</a>
+    Telefon: <a href="tel:+4917684229016">0176 84229016</a><br>
+    E-Mail: <a href="mailto:taxi.info@mail.de">taxi.info@mail.de</a>
   </p>
   <p><strong>Unternehmensform:</strong> Einzelunternehmen</p>
   <p><strong>Umsatzsteuer-ID:</strong> DE367937026</p>
