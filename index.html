@@ -61,9 +61,10 @@
       margin-bottom: 15px;
       font-size: 1rem;
     }
-    .radio-group {
+    .radio-group-vertical {
       display: flex;
-      gap: 20px;
+      flex-direction: column;
+      gap: 10px;
       margin-bottom: 15px;
       font-size: 1rem;
     }
@@ -177,9 +178,9 @@
     <label for="uhrzeit">Uhrzeit:</label>
     <input type="time" id="uhrzeit" required>
 
-    <div class="radio-group">
-      <label class="radio"><input type="radio" name="versand" value="whatsapp" checked> WhatsApp</label>
-      <label class="radio"><input type="radio" name="versand" value="email"> E-Mail</label>
+    <div class="radio-group-vertical">
+      <label class="radio"><input type="radio" name="versand" value="whatsapp" checked> Anfrage per WhatsApp</label>
+      <label class="radio"><input type="radio" name="versand" value="email"> Anfrage per E-Mail</label>
     </div>
 
     <button type="submit">Anfrage senden</button>
@@ -188,7 +189,7 @@
 
   <div style="text-align: center; margin-top: 40px;">
     <h3>Wir akzeptieren folgende Zahlungsmethoden:</h3>
-    <img src="https://i.ibb.co/W493YLLP/Bildschirmfoto-2025-07-14-um-15-31-58.png" alt="Zahlungsmethoden" style="max-width: 400px; width: 100%; height: auto; margin-top: 10px;">
+    <img src="https://i.ibb.co/7JPtd954/Bildschirmfoto-2025-07-14-um-15-23-45.png" alt="Zahlungsmethoden" style="max-width: 400px; width: 100%; height: auto; margin-top: 10px;">
   </div>
 </section>
 
