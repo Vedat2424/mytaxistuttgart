@@ -52,6 +52,11 @@
       color: #222;
       text-align: center;
     }
+    label {
+      font-weight: 600;
+      display: block;
+      margin-bottom: 5px;
+    }
     input, select {
       padding: 10px;
       width: 100%;
@@ -61,23 +66,22 @@
       margin-bottom: 15px;
       font-size: 1rem;
     }
-    label {
-      font-weight: 600;
-      display: block;
-      margin-bottom: 5px;
-    }
     .radio-group-vertical {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      align-items: flex-start;
+      gap: 6px;
       margin-bottom: 15px;
       font-size: 1rem;
-      text-align: left;
     }
     label.radio {
       display: flex;
       align-items: center;
       gap: 8px;
+      cursor: pointer;
+    }
+    label.radio input {
+      cursor: pointer;
     }
     button {
       padding: 12px 20px;
@@ -90,6 +94,8 @@
       font-weight: bold;
       display: block;
       margin-top: 10px;
+      width: 100%;
+      max-width: 200px;
     }
     button:hover {
       background-color: #0056b3;
@@ -168,11 +174,10 @@
         grid-template-columns: 1fr;
       }
       button {
-        width: 100%;
-        margin-right: 0;
+        max-width: 100%;
       }
       .radio-group-vertical {
-        gap: 15px;
+        gap: 12px;
       }
     }
   </style>
@@ -223,7 +228,7 @@
     <label for="uhrzeit">Uhrzeit:</label>
     <input type="time" id="uhrzeit" required>
 
-    <div class="radio-group-vertical">
+    <div class="radio-group-vertical" style="margin-top: 0;">
       <label class="radio"><input type="radio" name="versand" value="whatsapp" checked> WhatsApp</label>
       <label class="radio"><input type="radio" name="versand" value="email"> E-Mail</label>
     </div>
@@ -291,10 +296,10 @@
     const uhrzeit = document.getElementById("uhrzeit").value;
     const versand = document.querySelector('input[name="versand"]:checked').value;
 
-    const text = `Anfrage für Taxi-Fahrt:%0AStart: ${start}%0AZiel: ${ziel}%0ADatum: ${datum}%0AUhrzeit: ${uhrzeit}`;
+    const text = `Anfrage für Taxi-Fahrt:\nStart: ${start}\nZiel: ${ziel}\nDatum: ${datum}\nUhrzeit: ${uhrzeit}`;
 
     if (versand === "whatsapp") {
-      const whatsappLink = `https://wa.me/4917684229016?text=${text}`;
+      const whatsappLink = `https://wa.me/4917684229016?text=${encodeURIComponent(text)}`;
       window.open(whatsappLink, "_blank");
     } else {
       const mailtoLink = `mailto:taxi.info@mail.de?subject=Taxi-Anfrage&body=${encodeURIComponent(text)}`;
