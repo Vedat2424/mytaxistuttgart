@@ -3,152 +3,274 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>MyTaxiStuttgart – Fahrtkostenrechner</title>
+  <title>MyTaxiStuttgart – Fahrdienst buchen</title>
+  <meta name="description" content="Taxi buchen in Stuttgart – Schnell, einfach und zuverlässig mit MyTaxiStuttgart. Jetzt Fahrt oder Krankenfahrt reservieren.">
+  <meta name="author" content="Vedat Öztürk">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
   <style>
     body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: #f0f0f0;
       color: #333;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
+      font-size: 1.1rem;
+    }
+    header {
+      background: #000;
+      color: #fff;
       padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      background: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
     }
-    h1 {
-      text-align: center;
-      margin-bottom: 1rem;
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
     }
-    label {
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 15px;
       font-weight: bold;
-      margin-top: 1rem;
-      display: block;
     }
-    input {
-      width: 100%;
+    nav a:hover {
+      text-decoration: underline;
+    }
+    section {
+      background: #fff;
+      max-width: 1000px;
+      margin: 30px auto;
+      padding: 30px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    section h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+    input, select {
       padding: 10px;
-      font-size: 1rem;
-      margin-top: 5px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
+      width: 100%;
       box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-bottom: 15px;
     }
     button {
-      margin-top: 1.5rem;
-      padding: 12px;
-      width: 100%;
-      font-size: 1.2rem;
-      background: #007bff;
-      color: white;
+      padding: 12px 20px;
+      background-color: #007bff;
+      color: #fff;
       border: none;
-      border-radius: 6px;
+      border-radius: 5px;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      margin-right: 10px;
     }
     button:hover {
-      background: #0056b3;
+      background-color: #0056b3;
     }
-    #result {
-      margin-top: 2rem;
-      padding: 15px;
-      background: #e9f1ff;
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .card {
+      background: #f9f9f9;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      transition: transform 0.2s ease;
+    }
+    .card:hover {
+      transform: scale(1.02);
+    }
+    .card img {
+      max-width: 80px;
+      height: auto;
+      margin-bottom: 15px;
+    }
+    .card h3 {
+      margin: 10px 0 5px;
+      font-size: 1.3rem;
+    }
+    .card p {
+      font-size: 0.95rem;
+      color: #555;
+    }
+    .card .btn {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 18px;
+      background: #000;
+      color: #fff;
+      text-decoration: none;
       border-radius: 8px;
-      font-size: 1.2rem;
       font-weight: bold;
-      text-align: center;
     }
-    #error {
-      color: red;
-      margin-top: 1rem;
+    .card .btn:hover {
+      background: #333;
+    }
+    footer {
+      background: #222;
+      color: #ccc;
       text-align: center;
+      padding: 20px;
     }
   </style>
 </head>
 <body>
 
-  <h1>Fahrtkostenrechner MyTaxiStuttgart</h1>
+<header>
+  <h1>MyTaxiStuttgart</h1>
+  <nav>
+    <a href="#start">Start</a>
+    <a href="#vorschlaege">Vorschläge</a>
+    <a href="#preisrechner">Preis</a>
+    <a href="#kontakt">Kontakt</a>
+    <a href="#impressum">Impressum</a>
+    <a href="#datenschutz">Datenschutz</a>
+  </nav>
+</header>
 
-  <label for="start">Startadresse:</label>
-  <input type="text" id="start" placeholder="z.B. Hauptstr. 1, Stuttgart" required />
+<section id="start">
+  <h2>Willkommen bei MyTaxiStuttgart</h2>
+  <p>Buche deine Fahrt oder berechne den Preis direkt online.</p>
+</section>
 
-  <label for="ziel">Zieladresse:</label>
-  <input type="text" id="ziel" placeholder="z.B. Bahnhofstr. 5, Stuttgart" required />
+<section id="vorschlaege">
+  <h2>Vorschläge</h2>
+  <div class="cards">
+    <div class="card">
+      <img src="https://i.ibb.co/fTdNcK2/istockphoto-1024274518-612x612.jpg" alt="Fahrt" />
+      <h3>Fahrt</h3>
+      <p>Buche deine Fahrt und komme sicher und pünktlich an dein Ziel.</p>
+      <a href="#preisrechner" class="btn">Details</a>
+    </div>
+    <div class="card">
+      <img src="https://i.ibb.co/Qj8LXhxm/reserve-clock.png" alt="Reservieren" />
+      <h3>Reserviere</h3>
+      <p>Plane deine Fahrt im Voraus, damit du entspannt losfahren kannst.</p>
+      <a href="#preisrechner" class="btn">Details</a>
+    </div>
+    <div class="card">
+      <img src="https://i.ibb.co/q3FQ6BR5/Bildschirmfoto-2025-07-14-um-12-13-17.png" alt="Kurier" />
+      <h3>Kurier*in</h3>
+      <p>Schnelle Lieferfahrten direkt mit dem Taxi – lokal und zuverlässig.</p>
+      <a href="#kontakt" class="btn">Details</a>
+    </div>
+    <div class="card">
+      <img src="https://i.ibb.co/gQpNDkV/Bildschirmfoto-2025-07-14-um-12-15-07.png" alt="Krankenfahrten" />
+      <h3>Krankenfahrten</h3>
+      <p>Wir bringen dich sicher zu Arztterminen oder zur Klinik – mit Rücksicht & Komfort.</p>
+      <a href="#kontakt" class="btn">Details</a>
+    </div>
+  </div>
+</section>
 
-  <button id="berechnen">Preis berechnen</button>
+<section id="preisrechner">
+  <h2>Fahrtpreis & Navigation</h2>
+  <form id="preisForm">
+    <label for="startadresse">Startadresse:</label>
+    <input type="text" id="startadresse" placeholder="z.B. Hauptstr. 1, Stuttgart" required>
 
-  <div id="result"></div>
-  <div id="error"></div>
+    <label for="zieladresse">Zieladresse:</label>
+    <input type="text" id="zieladresse" placeholder="z.B. Bahnhofstr. 5, Stuttgart" required>
 
-  <script>
-    const ORS_API_KEY = "DEIN_OPENROUTESERVICE_API_KEY_HIER";
+    <label for="km">Entfernung (km):</label>
+    <input type="number" step="0.1" id="km" placeholder="z.B. 5.2" required>
 
-    async function geocode(address) {
-      const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`;
-      const res = await fetch(url);
-      if (!res.ok) throw new Error("Geokodierung fehlgeschlagen");
-      const data = await res.json();
-      if (data.length === 0) throw new Error(`Adresse nicht gefunden: ${address}`);
-      return [parseFloat(data[0].lon), parseFloat(data[0].lat)];
+    <div class="button-row">
+      <button type="button" onclick="preisBerechnen()">Preis berechnen</button>
+      <button type="button" onclick="googleNavigation()">Navigation starten</button>
+    </div>
+  </form>
+  <p id="ausgabe" style="font-weight: bold; margin-top: 10px;"></p>
+</section>
+
+<section id="kontakt">
+  <h2>Kontakt</h2>
+  <p>📍 Oberdorfstraße 53, 70771 Leinfelden-Echterdingen</p>
+  <p>📞 <a href="tel:+4917684229016">0176 84229016</a></p>
+  <p>📧 <a href="mailto:taxi.info@mail.de">taxi.info@mail.de</a></p>
+</section>
+
+<section id="impressum">
+  <h2>Impressum</h2>
+  <p><strong>Angaben gemäß § 5 TMG:</strong></p>
+  <p>
+    Vedat Öztürk<br>
+    Oberdorfstraße 53<br>
+    70771 Leinfelden-Echterdingen
+  </p>
+  <p><strong>Kontakt:</strong><br>
+    Telefon: <a href="tel:+4917684229016">0176 84229016</a><br>
+    E-Mail: <a href="mailto:taxi.info@mail.de">taxi.info@mail.de</a>
+  </p>
+  <p><strong>Unternehmensform:</strong> Einzelunternehmen</p>
+  <p><strong>Umsatzsteuer-ID:</strong> DE367937026</p>
+  <p><strong>Verantwortlich:</strong> Vedat Öztürk</p>
+  <p><strong>Aufsichtsbehörde:</strong> Ordnungsamt Leinfelden-Echterdingen</p>
+</section>
+
+<section id="datenschutz">
+  <h2>Datenschutzerklärung</h2>
+  <p>
+    Wir nehmen den Schutz Ihrer persönlichen Daten sehr ernst. Personenbezogene Daten werden vertraulich und gemäß der gesetzlichen Datenschutzvorschriften behandelt.
+  </p>
+  <p>
+    Beim Besuch unserer Webseite werden keine personenbezogenen Daten erhoben. Wenn Sie uns per Telefon oder E-Mail kontaktieren, erfolgt die Verarbeitung Ihrer Angaben ausschließlich zur Bearbeitung Ihrer Anfrage.
+  </p>
+  <p>
+    Verantwortlich für den Datenschutz:<br>
+    Vedat Öztürk, Oberdorfstraße 53, 70771 Leinfelden-Echterdingen
+  </p>
+</section>
+
+<footer>
+  © 2025 MyTaxiStuttgart – Alle Rechte vorbehalten.
+</footer>
+
+<script>
+  function preisBerechnen() {
+    const km = parseFloat(document.getElementById("km").value);
+    const ausgabe = document.getElementById("ausgabe");
+
+    if (isNaN(km) || km <= 0) {
+      ausgabe.innerText = "Bitte gültige Kilometerzahl eingeben.";
+      return;
     }
 
-    async function getDistance(startCoords, zielCoords) {
-      const url = "https://api.openrouteservice.org/v2/directions/driving-car";
-      const body = { coordinates: [startCoords, zielCoords] };
-      const res = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Authorization": ORS_API_KEY,
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(body)
-      });
-      if (!res.ok) {
-        const text = await res.text();
-        throw new Error("Routing fehlgeschlagen: " + text);
-      }
-      const data = await res.json();
-      return data.routes[0].summary.distance / 1000; // in km
+    const grundpreis = 4.30;
+    let preis = grundpreis;
+
+    if (km <= 3) {
+      preis += km * 3.30;
+    } else {
+      preis += 3 * 3.30 + (km - 3) * 2.50;
     }
 
-    function berechnePreis(km) {
-      const grundpreis = 4.30;
-      if (km <= 3) return grundpreis + km * 3.30;
-      return grundpreis + 3 * 3.30 + (km - 3) * 2.50;
+    ausgabe.innerText = `Gesamtkosten: €${preis.toFixed(2)}`;
+  }
+
+  function googleNavigation() {
+    const start = document.getElementById("startadresse").value.trim();
+    const ziel = document.getElementById("zieladresse").value.trim();
+
+    if (!start || !ziel) {
+      alert("Bitte Start- und Zieladresse eingeben.");
+      return;
     }
 
-    document.getElementById("berechnen").addEventListener("click", async () => {
-      const resultDiv = document.getElementById("result");
-      const errorDiv = document.getElementById("error");
-      resultDiv.textContent = "";
-      errorDiv.textContent = "";
-
-      const start = document.getElementById("start").value.trim();
-      const ziel = document.getElementById("ziel").value.trim();
-
-      if (!start || !ziel) {
-        errorDiv.textContent = "Bitte Start- und Zieladresse eingeben.";
-        return;
-      }
-
-      resultDiv.textContent = "Berechne Entfernung und Fahrpreis...";
-      try {
-        const startCoords = await geocode(start);
-        const zielCoords = await geocode(ziel);
-        const km = await getDistance(startCoords, zielCoords);
-        const preis = berechnePreis(km);
-
-        resultDiv.innerHTML = `
-          Entfernung: <strong>${km.toFixed(2)} km</strong><br />
-          Geschätzter Fahrpreis: <strong>€${preis.toFixed(2)}</strong>
-        `;
-      } catch (err) {
-        errorDiv.textContent = err.message;
-      }
-    });
-  </script>
+    const url = `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(start)}&destination=${encodeURIComponent(ziel)}`;
+    window.open(url, "_blank");
+  }
+</script>
 
 </body>
 </html>
