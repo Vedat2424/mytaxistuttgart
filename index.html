@@ -61,19 +61,23 @@
       margin-bottom: 15px;
       font-size: 1rem;
     }
+    label {
+      font-weight: 600;
+      display: block;
+      margin-bottom: 5px;
+    }
     .radio-group-vertical {
       display: flex;
       flex-direction: column;
       gap: 10px;
       margin-bottom: 15px;
       font-size: 1rem;
-      align-items: flex-start; /* linksbündig */
+      text-align: left;
     }
     label.radio {
       display: flex;
       align-items: center;
       gap: 8px;
-      cursor: pointer;
     }
     button {
       padding: 12px 20px;
@@ -82,15 +86,10 @@
       border: none;
       border-radius: 5px;
       cursor: pointer;
-      margin-right: 10px;
       font-size: 1rem;
       font-weight: bold;
-      width: 100%;
-      max-width: 300px;
       display: block;
-      margin-left: auto;
-      margin-right: auto;
-      transition: background-color 0.3s ease;
+      margin-top: 10px;
     }
     button:hover {
       background-color: #0056b3;
@@ -115,14 +114,6 @@
     .card:hover {
       transform: scale(1.02);
     }
-    footer {
-      background: #222;
-      color: #ccc;
-      text-align: center;
-      padding: 20px;
-      margin-top: 40px;
-      border-radius: 0 0 8px 8px;
-    }
     #start p.intro-text {
       font-size: 1.2rem;
       color: #666;
@@ -133,26 +124,55 @@
       margin-left: auto;
       margin-right: auto;
     }
-    #datenschutz {
+    #datenschutz, #impressum {
       font-size: 0.9rem;
       color: #555;
-      padding: 20px;
+      padding: 20px 0 0 0;
+      max-width: 1000px;
+      margin: 0 auto 30px auto;
+      border-radius: 0 0 8px 8px;
     }
-    /* Responsive Anpassungen */
+    #impressum p {
+      margin: 5px 0;
+    }
+    #impressum p strong {
+      font-weight: 600;
+    }
+    .no-break {
+      white-space: nowrap;
+    }
+    footer {
+      background: #222;
+      color: #ccc;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+      border-radius: 0 0 8px 8px;
+    }
+
+    /* Mobile Optimierungen */
     @media (max-width: 600px) {
       header {
-        justify-content: center;
-        text-align: center;
+        flex-direction: column;
+        align-items: flex-start;
       }
       nav a {
-        margin: 8px 10px;
-        display: inline-block;
+        margin: 8px 10px 0 0;
+        font-size: 1rem;
+      }
+      section {
+        margin: 20px 10px;
+        padding: 20px;
       }
       .cards {
         grid-template-columns: 1fr;
       }
       button {
-        max-width: 100%;
+        width: 100%;
+        margin-right: 0;
+      }
+      .radio-group-vertical {
+        gap: 15px;
       }
     }
   </style>
@@ -234,8 +254,7 @@
     70771 Leinfelden-Echterdingen
   </p>
   <p><strong>Kontakt:</strong><br>
-    Telefon: <a href="tel:+4917684229016">0176 84229016</a><br>
-    E-Mail: <a href="mailto:taxi.info@mail.de">taxi.info@mail.de</a>
+    Telefon: <a href="tel:+4917684229016">0176 84229016</a> | <span class="no-break">E-Mail:</span> <a href="mailto:taxi.info@mail.de">taxi.info@mail.de</a>
   </p>
   <p><strong>Unternehmensform:</strong> Einzelunternehmen</p>
   <p><strong>Umsatzsteuer-ID:</strong> DE367937026</p>
@@ -272,10 +291,10 @@
     const uhrzeit = document.getElementById("uhrzeit").value;
     const versand = document.querySelector('input[name="versand"]:checked').value;
 
-    const text = `Anfrage für Taxi-Fahrt:\nStart: ${start}\nZiel: ${ziel}\nDatum: ${datum}\nUhrzeit: ${uhrzeit}`;
+    const text = `Anfrage für Taxi-Fahrt:%0AStart: ${start}%0AZiel: ${ziel}%0ADatum: ${datum}%0AUhrzeit: ${uhrzeit}`;
 
     if (versand === "whatsapp") {
-      const whatsappLink = `https://wa.me/4917684229016?text=${encodeURIComponent(text)}`;
+      const whatsappLink = `https://wa.me/4917684229016?text=${text}`;
       window.open(whatsappLink, "_blank");
     } else {
       const mailtoLink = `mailto:taxi.info@mail.de?subject=Taxi-Anfrage&body=${encodeURIComponent(text)}`;
