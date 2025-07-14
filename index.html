@@ -85,6 +85,12 @@
       margin-right: 10px;
       font-size: 1rem;
       font-weight: bold;
+      width: 100%;
+      max-width: 300px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      transition: background-color 0.3s ease;
     }
     button:hover {
       background-color: #0056b3;
@@ -132,44 +138,21 @@
       color: #555;
       padding: 20px;
     }
-
-    /* Anfrage Formular Layout */
-    #anfrage form {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      align-items: flex-start;
-    }
-    #anfrage form > div.form-fields {
-      flex: 1 1 400px;
-      min-width: 280px;
-    }
-    #anfrage form > div.radio-group-container {
-      flex: 0 0 180px;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      font-weight: 600;
-      font-size: 1rem;
-      align-items: flex-start;
-    }
-    #ausgabe {
-      font-weight: bold;
-      margin-top: 10px;
-      text-align: center;
-      width: 100%;
-    }
-    /* Responsive */
-    @media (max-width: 700px) {
-      #anfrage form {
-        flex-direction: column;
+    /* Responsive Anpassungen */
+    @media (max-width: 600px) {
+      header {
+        justify-content: center;
+        text-align: center;
       }
-      #anfrage form > div.radio-group-container {
-        flex: none;
-        margin-bottom: 15px;
+      nav a {
+        margin: 8px 10px;
+        display: inline-block;
       }
-      #anfrage form > div.form-fields {
-        min-width: 100%;
+      .cards {
+        grid-template-columns: 1fr;
+      }
+      button {
+        max-width: 100%;
       }
     }
   </style>
@@ -208,30 +191,26 @@
 <section id="anfrage">
   <h2>Anfrage senden</h2>
   <form id="anfrageForm" onsubmit="return sendeAnfrage(event)">
-    <div class="form-fields">
-      <label for="startadresse">Startadresse:</label>
-      <input type="text" id="startadresse" required>
+    <label for="startadresse">Startadresse:</label>
+    <input type="text" id="startadresse" required>
 
-      <label for="zieladresse">Zieladresse:</label>
-      <input type="text" id="zieladresse" required>
+    <label for="zieladresse">Zieladresse:</label>
+    <input type="text" id="zieladresse" required>
 
-      <label for="datum">Datum:</label>
-      <input type="date" id="datum" required>
+    <label for="datum">Datum:</label>
+    <input type="date" id="datum" required>
 
-      <label for="uhrzeit">Uhrzeit:</label>
-      <input type="time" id="uhrzeit" required>
+    <label for="uhrzeit">Uhrzeit:</label>
+    <input type="time" id="uhrzeit" required>
 
-      <button type="submit">Anfrage senden</button>
+    <div class="radio-group-vertical">
+      <label class="radio"><input type="radio" name="versand" value="whatsapp" checked> Anfrage per WhatsApp</label>
+      <label class="radio"><input type="radio" name="versand" value="email"> Anfrage per E-Mail</label>
     </div>
-    <div class="radio-group-container">
-      <label>Anfrage per:</label>
-      <div class="radio-group-vertical">
-        <label class="radio"><input type="radio" name="versand" value="whatsapp" checked> Anfrage per WhatsApp</label>
-        <label class="radio"><input type="radio" name="versand" value="email"> Anfrage per E-Mail</label>
-      </div>
-    </div>
-    <p id="ausgabe"></p>
+
+    <button type="submit">Anfrage senden</button>
   </form>
+  <p id="ausgabe" style="font-weight: bold; margin-top: 10px; text-align:center;"></p>
 
   <div style="text-align: center; margin-top: 40px;">
     <h3>Wir akzeptieren folgende Zahlungsmethoden:</h3>
