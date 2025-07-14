@@ -29,11 +29,16 @@
       margin: 0;
       font-size: 2rem;
     }
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+    }
     nav a {
       color: #fff;
       text-decoration: none;
-      margin: 0 15px;
+      margin: 5px 10px;
       font-weight: bold;
+      font-size: 1rem;
     }
     nav a:hover {
       text-decoration: underline;
@@ -61,7 +66,6 @@
       margin-bottom: 15px;
       font-size: 1rem;
     }
-
     .radio-group-vertical {
       display: flex;
       flex-direction: column;
@@ -77,7 +81,6 @@
       font-size: 1rem;
       color: #333;
     }
-
     button {
       padding: 12px 20px;
       background-color: #007bff;
@@ -184,7 +187,7 @@
 
     <div class="radio-group-vertical">
       <label class="radio"><input type="radio" name="versand" value="whatsapp" checked> WhatsApp</label>
-      <label class="radio"><input type="radio" name="versand" value="email"> E.Mail</label>
+      <label class="radio"><input type="radio" name="versand" value="email"> Email</label>
     </div>
 
     <button type="submit">Anfrage senden</button>
