@@ -15,11 +15,24 @@
     background-color: #0073e6;
     color: #fff;
     padding: 20px;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  header img {
+    height: 60px;
+    margin-right: 20px;
   }
   header h1 {
     margin: 0;
     font-size: 2em;
+  }
+  header p {
+    width: 100%;
+    text-align: center;
+    margin-top: 5px;
+    font-size: 1em;
   }
   nav {
     background-color: #005bb5;
@@ -36,26 +49,32 @@
   }
   main {
     padding: 20px;
+    max-width: 1200px;
+    margin: auto;
   }
   section {
     margin-bottom: 40px;
   }
   h2 {
     color: #0073e6;
+    border-bottom: 2px solid #0073e6;
+    padding-bottom: 10px;
   }
-  /* Kontakt & Leistungen */
-  .kontakt, .leistungen {
+  /* Startseite & Leistungen & Kontakt */
+  .info-box {
     background-color: #fff;
     padding: 15px;
     border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
   }
-  /* Buchungsformular */
-  .buchung-form {
+  /* Buchung & Preis */
+  .buchung-container {
     background-color: #fff;
     padding: 15px;
     border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
   }
-  input[type="text"], input[type="number"], select {
+  input[type="text"], input[type="checkbox"], input[type="radio"] {
     width: 100%;
     padding: 8px;
     margin-top: 6px;
@@ -74,18 +93,31 @@
   button:hover {
     background-color: #005bb5;
   }
-  /* Zahlungsoptionen */
   #buchenSection {
     display: none;
     margin-top: 20px;
+  }
+  /* Responsive */
+  @media(max-width: 768px) {
+    header {
+      flex-direction: column;
+      align-items: center;
+    }
+    header img {
+      margin-bottom: 10px;
+    }
   }
 </style>
 </head>
 <body>
 
 <header>
-  <h1>MyTaxiStuttgart</h1>
-  <p>Ihr zuverlässiges Taxi in Stuttgart und Umgebung</p>
+  <!-- Logo einfügen, durch echtes Bild ersetzen -->
+  <img src="https://via.placeholder.com/150x60?text=Logo" alt="MyTaxiStuttgart Logo" />
+  <div style="text-align:center;">
+    <h1>MyTaxiStuttgart</h1>
+    <p>Ihr zuverlässiges Taxi in Stuttgart und Umgebung</p>
+  </div>
 </header>
 
 <nav>
@@ -98,35 +130,41 @@
 <main>
   <!-- Startseite -->
   <section id="start">
-    <h2>Willkommen bei MyTaxiStuttgart</h2>
-    <p>Wir bieten schnelle, sichere und komfortable Fahrten in Stuttgart und Umgebung. Ob Flughafentransfer, Stadtrundfahrt oder Privatfahrt – wir sind für Sie da!</p>
+    <div class="info-box">
+      <h2>Willkommen bei MyTaxiStuttgart</h2>
+      <p>Wir bieten schnelle, sichere und komfortable Fahrten in Stuttgart und Umgebung. Ob Flughafentransfer, Stadtrundfahrt oder Privatfahrt – wir sind für Sie da!</p>
+    </div>
   </section>
 
   <!-- Leistungen -->
-  <section id="leistungen" class="leistungen">
-    <h2>Unsere Leistungen</h2>
-    <ul>
-      <li>Flughafentransfers</li>
-      <li>Stadtfahrten</li>
-      <li>Geschäftsreisen</li>
-      <li>Privat- und Gruppentransporte</li>
-      <li>24/7 Service</li>
-    </ul>
+  <section id="leistungen">
+    <div class="info-box">
+      <h2>Unsere Leistungen</h2>
+      <ul>
+        <li>Flughafentransfers</li>
+        <li>Stadtfahrten</li>
+        <li>Geschäftsreisen</li>
+        <li>Privat- und Gruppentransporte</li>
+        <li>24/7 Service</li>
+      </ul>
+    </div>
   </section>
 
   <!-- Kontakt -->
-  <section id="kontakt" class="kontakt">
-    <h2>Kontakt & Öffnungszeiten</h2>
-    <p><strong>Telefon:</strong> 0711 12345678</p>
-    <p><strong>E-Mail:</strong> info@mytaxistuttgart.de</p>
-    <p><strong>Adresse:</strong> Beispielstraße 10, 70173 Stuttgart</p>
-    <p><strong>Öffnungszeiten:</strong> Montag - Sonntag, 06:00 - 23:00 Uhr</p>
+  <section id="kontakt">
+    <div class="info-box">
+      <h2>Kontakt & Öffnungszeiten</h2>
+      <p><strong>Telefon:</strong> 0711 12345678</p>
+      <p><strong>E-Mail:</strong> info@mytaxistuttgart.de</p>
+      <p><strong>Adresse:</strong> Beispielstraße 10, 70173 Stuttgart</p>
+      <p><strong>Öffnungszeiten:</strong> Montag - Sonntag, 06:00 - 23:00 Uhr</p>
+    </div>
   </section>
 
   <!-- Buchung -->
   <section id="buchung">
     <h2>Fahrpreis berechnen & buchen</h2>
-    <div class="buchung-form">
+    <div class="buchung-container">
       <label for="start">Startadresse:</label>
       <input type="text" id="start" placeholder="z.B. Hauptstraße 5, Stuttgart" />
 
@@ -136,31 +174,31 @@
       <label><input type="checkbox" id="reservieren" /> Reservierung vorab?</label><br><br>
 
       <button onclick="berechnePreis()">Preis anzeigen</button>
-    </div>
-    <p id="ergebnis" style="font-weight: bold; margin-top: 10px;"></p>
 
-    <!-- Zahlungsoptionen -->
-    <div id="buchenSection">
-      <h3>Zahlungsart wählen:</h3>
-      <label><input type="radio" name="zahlungsart" value="Kreditkarte" /> Kreditkarte</label><br>
-      <label><input type="radio" name="zahlungsart" value="Barzahlung" /> Barzahlung</label><br>
-      <label><input type="radio" name="zahlungsart" value="PayPal" /> PayPal</label><br><br>
-      <button onclick="buchen()">Buchen</button>
+      <p id="ergebnis"></p>
+
+      <!-- Zahlungsoptionen -->
+      <div id="buchenSection">
+        <h3>Zahlungsart wählen:</h3>
+        <label><input type="radio" name="zahlungsart" value="Kreditkarte" /> Kreditkarte</label><br>
+        <label><input type="radio" name="zahlungsart" value="Barzahlung" /> Barzahlung</label><br>
+        <label><input type="radio" name="zahlungsart" value="PayPal" /> PayPal</label><br><br>
+        <button onclick="buchen()">Buchen</button>
+      </div>
     </div>
   </section>
 </main>
 
 <script>
-// Variablen zum Speichern
+// Variablen für Preis & Adressen
 let aktuellerPreis = 0;
 let aktuellerStart = '';
 let aktuellerZiel = '';
 
-// Funktion zur Preisberechnung
 function berechnePreis() {
   const start = document.getElementById('start').value.trim();
   const ziel = document.getElementById('ziel').value.trim();
-  const reservieren = document.getElementById('reservieren').checked;
+  const reservierung = document.getElementById('reservieren').checked;
 
   if (!start || !ziel) {
     alert('Bitte Start- und Zieladresse eingeben.');
@@ -173,38 +211,42 @@ function berechnePreis() {
     .then(startData => {
       if (startData.length === 0) throw 'Startadresse nicht gefunden.';
       const startCoords = [parseFloat(startData[0].lat), parseFloat(startData[0].lon)];
-
       return fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(ziel)}`)
         .then(res => res.json())
         .then(zielData => {
           if (zielData.length === 0) throw 'Zieladresse nicht gefunden.';
           const zielCoords = [parseFloat(zielData[0].lat), parseFloat(zielData[0].lon)];
-
           const dist = haversineDistance(startCoords, zielCoords);
-          const grundpreis = 5; // € Grundpreis
-          const preisProKm = 2; // € pro km
+          const grundpreis = 5;
+          const preisProKm = 2;
           let preis = grundpreis + (dist * preisProKm);
-
-          if (reservieren) {
-            preis += 3; // Reservierungsgebühr
-          }
-
-          // Speichern
+          if (reservierung) preis += 3;
           aktuellerPreis = preis;
           aktuellerStart = start;
           aktuellerZiel = ziel;
-
-          document.getElementById('ergebnis').innerText = `Von ${start} zum ${ziel} – Preis: €${preis.toFixed(2)}`;
+          document.getElementById('ergebnis').innerText = `Fahrt von ${start} nach ${ziel} kostet €${preis.toFixed(2)}`;
           document.getElementById('buchenSection').style.display = 'block';
         });
     })
-    .catch(error => {
-      document.getElementById('ergebnis').innerText = 'Fehler: ' + error;
+    .catch(err => {
+      alert('Fehler bei der Preisberechnung: ' + err);
       document.getElementById('buchenSection').style.display = 'none';
     });
 }
 
-// Buchung
+// Haversine-Formel
+function haversineDistance(coords1, coords2) {
+  const toRad = deg => (deg * Math.PI) / 180;
+  const R = 6371;
+  const [lat1, lon1] = coords1;
+  const [lat2, lon2] = coords2;
+  const dLat = toRad(lat2 - lat1);
+  const dLon = toRad(lon2 - lon1);
+  const a = Math.sin(dLat/2)**2 + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon/2)**2;
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  return R * c;
+}
+
 function buchen() {
   const zahlungsart = document.querySelector('input[name="zahlungsart"]:checked');
   if (!zahlungsart) {
@@ -212,28 +254,10 @@ function buchen() {
     return;
   }
   if (zahlungsart.value === 'PayPal') {
-    // Weiterleitung zu PayPal (Beispiel)
-    window.location.href = 'https://www.paypal.com/de/signin'; // echte Zahlungs-URL einfügen
+    window.location.href = 'https://www.paypal.com/de/signin'; // Beispiel
   } else {
     alert(`Vielen Dank! Ihre Buchung von ${aktuellerStart} nach ${aktuellerZiel} im Wert von €${aktuellerPreis.toFixed(2)} wurde mit ${zahlungsart.value} bestätigt.`);
   }
-}
-
-// Haversine-Formel zur Entfernung
-function haversineDistance(coords1, coords2) {
-  const toRad = angle => (angle * Math.PI) / 180;
-  const R = 6371; // Erdradius in km
-  const [lat1, lon1] = coords1;
-  const [lat2, lon2] = coords2;
-
-  const dLat = toRad(lat2 - lat1);
-  const dLon = toRad(lon2 - lon1);
-
-  const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-            Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
-            Math.sin(dLon/2) * Math.sin(dLon/2);
-  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  return R * c; // Entfernung in km
 }
 </script>
 
