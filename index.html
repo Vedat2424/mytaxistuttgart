@@ -99,34 +99,10 @@
     .card:hover {
       transform: scale(1.02);
     }
-    .card img {
-      max-width: 80px;
-      height: auto;
-      margin-bottom: 15px;
-    }
     .card h3 {
       margin: 10px 0 5px;
       font-size: 1.3rem;
       color: #222;
-    }
-    .card p {
-      font-size: 0.95rem;
-      color: #555;
-      margin-bottom: 10px;
-    }
-    .card .btn {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 10px 18px;
-      background: #000;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: bold;
-      font-size: 1rem;
-    }
-    .card .btn:hover {
-      background: #333;
     }
     footer {
       background: #222;
@@ -136,7 +112,6 @@
       margin-top: 40px;
       border-radius: 0 0 8px 8px;
     }
-    /* Spezieller Startbereich-Stil */
     #start p.intro-text {
       font-size: 1.2rem;
       color: #666;
@@ -147,7 +122,6 @@
       margin-left: auto;
       margin-right: auto;
     }
-    /* Datenschutz kleiner */
     #datenschutz {
       font-size: 0.9rem;
       color: #555;
@@ -166,7 +140,7 @@
   <nav>
     <a href="#start">Start</a>
     <a href="#service">Unser Service</a>
-    <a href="#preisrechner">Anfrage senden</a>
+    <a href="#preisrechner">Anfrage</a>
     <a href="#kontakt">Kontakt</a>
     <a href="#impressum">Impressum</a>
     <a href="#datenschutz">Datenschutz</a>
@@ -202,7 +176,12 @@
     <label for="datum">Datum:</label>
     <input type="date" id="datum" required>
 
-    <button type="submit">Anfrage senden</button>
+    <label for="uhrzeit">Uhrzeit:</label>
+    <input type="time" id="uhrzeit" required>
+
+    <div class="button-row">
+      <button type="submit">Anfrage senden</button>
+    </div>
   </form>
   <p id="ausgabe" style="font-weight: bold; margin-top: 10px; text-align:center;"></p>
 </section>
@@ -229,7 +208,8 @@
   <p><strong>Unternehmensform:</strong> Einzelunternehmen</p>
   <p><strong>Umsatzsteuer-ID:</strong> DE367937026</p>
   <p><strong>Verantwortlich:</strong> Vedat Öztürk</p>
-  <p><strong>Aufsichtsbehörde:</strong> Ordnungsamt Leinfelden-Echterdingen</p>
+  <p><strong>Aufsichtsbehörde:</strong> Landratsamt Plochingen<br>
+     Adresse: Am Aussichtsturm 7, 73207 Plochingen</p>
 </section>
 
 <section id="datenschutz">
@@ -247,7 +227,7 @@
 </section>
 
 <footer>
-  © 2025 MyTaxiStuttgart – Alle Rechte vorbehalten.
+  © 2025 MyTaxiStuttgart
 </footer>
 
 <script>
@@ -257,29 +237,23 @@
     const start = document.getElementById("startadresse").value.trim();
     const ziel = document.getElementById("zieladresse").value.trim();
     const datum = document.getElementById("datum").value;
+    const uhrzeit = document.getElementById("uhrzeit").value;
 
-    if (!start || !ziel || !datum) {
+    if (!start || !ziel || !datum || !uhrzeit) {
       alert("Bitte alle Felder ausfüllen.");
       return false;
     }
 
-    const text = `Anfrage für Taxi-Fahrt:\nStartadresse: ${start}\nZieladresse: ${ziel}\nDatum: ${datum}`;
+    const text = `Anfrage für Taxi-Fahrt:\nStartadresse: ${start}\nZieladresse: ${ziel}\nDatum: ${datum}\nUhrzeit: ${uhrzeit}`;
 
-    // Email senden via mailto
-    const mailtoLink = `mailto:taxi.info@mail.de?subject=${encodeURIComponent("Taxi-Anfrage")}&body=${encodeURIComponent(text)}`;
-    
-    // WhatsApp senden (optional, hier Beispielnummer +4917684229016)
+    const mailtoLink = `mailto:taxi.info@mail.de?subject=Taxi-Anfrage&body=${encodeURIComponent(text)}`;
     const whatsappLink = `https://wa.me/4917684229016?text=${encodeURIComponent(text)}`;
 
-    // Öffnet Email-Client
-    window.location.href = mailtoLink;
+    // Email und WhatsApp
+    window.open(mailtoLink, "_blank");
+    window.open(whatsappLink, "_blank");
 
-    // Optional: Öffnet WhatsApp in neuem Tab nach Email-Client (hier 2 Sekunden Verzögerung)
-    // setTimeout(() => window.open(whatsappLink, "_blank"), 2000);
-
-    // Ausgabe bestätigen
-    const ausgabe = document.getElementById("ausgabe");
-    ausgabe.innerText = "Deine Anfrage wurde vorbereitet. Bitte sende die E-Mail in deinem Mailprogramm ab.";
+    document.getElementById("ausgabe").innerText = "Deine Anfrage wurde vorbereitet. Öffne WhatsApp oder dein E-Mail-Programm zum Absenden.";
 
     return false;
   }
