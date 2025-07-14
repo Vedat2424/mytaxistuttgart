@@ -4,84 +4,80 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>MyTaxiStuttgart – Fahrdienst buchen</title>
+  <meta name="description" content="Taxi buchen in Stuttgart – Schnell, einfach und zuverlässig mit MyTaxiStuttgart. Jetzt Fahrt oder Krankenfahrt reservieren.">
+  <meta name="author" content="Vedat Öztürk">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
   <style>
     body {
-      margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f0f0f0; color: #333;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f0f0f0;
+      color: #333;
+      font-size: 1.1rem;
     }
     header {
-      background: #000; color: #fff; padding: 20px; display: flex; justify-content: space-between; align-items: center;
+      background: #000;
+      color: #fff;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
     }
     header h1 {
-      margin: 0; font-size: 2rem;
+      margin: 0;
+      font-size: 2rem;
     }
     nav a {
-      color: #fff; text-decoration: none; margin: 0 15px; font-weight: bold;
+      color: #fff;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
     }
-    .hero {
-      background: #fff; padding: 40px 20px; text-align: center;
-    }
-    .hero h2 {
-      font-size: 2.5rem; margin-bottom: 20px;
-    }
-    .hero p {
-      font-size: 1.2rem; margin-bottom: 30px;
-    }
-    .buttons {
-      display: flex; justify-content: center; gap: 20px;
-    }
-    .btn {
-      padding: 15px 30px; font-size: 1rem; border-radius: 8px; text-decoration: none; font-weight: bold;
-    }
-    .btn-primary {
-      background-color: #000; color: #fff;
-    }
-    .btn-secondary {
-      background-color: #ccc; color: #000;
+    nav a:hover {
+      text-decoration: underline;
     }
     section {
-      background: #fff; max-width: 1000px; margin: 30px auto; padding: 30px; box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      background: #fff;
+      max-width: 1000px;
+      margin: 30px auto;
+      padding: 30px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
     section h2 {
-      font-size: 2rem; margin-bottom: 20px;
+      font-size: 2rem;
+      margin-bottom: 20px;
     }
-    .cards {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;
-    }
-    .card {
-      background: #f7f7f7; padding: 20px; border-radius: 8px; text-align: center;
-    }
-    .card img {
-      max-width: 60px; margin-bottom: 10px;
-    }
-    footer {
-      background: #222; color: #ccc; text-align: center; padding: 20px;
-    }
-    /* Spezielle Styles für Formulare */
-    form {
-      display: flex; flex-direction: column; max-width: 400px; margin: 0 auto;
-    }
-    label {
-      margin-top: 10px; font-weight: bold;
-    }
-    input[type="text"],
-    input[type="number"] {
-      padding: 8px; margin-top: 5px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px;
+    input, select {
+      padding: 10px;
+      width: 100%;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-bottom: 15px;
     }
     button {
-      padding: 10px; margin-top: 10px; background-color: #007bff; color: #fff; border: none; border-radius: 4px; cursor: pointer;
+      padding: 12px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-right: 10px;
     }
     button:hover {
       background-color: #0056b3;
     }
-    /* Für mobile Ansicht */
-    @media(max-width: 600px) {
-      header {
-        flex-direction: column; align-items: center; gap: 10px;
-      }
-      .buttons {
-        flex-direction: column; gap: 10px;
-      }
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    footer {
+      background: #222;
+      color: #ccc;
+      text-align: center;
+      padding: 20px;
     }
   </style>
 </head>
@@ -91,95 +87,38 @@
   <h1>MyTaxiStuttgart</h1>
   <nav>
     <a href="#start">Start</a>
-    <a href="#fuer-spaeter">Für später planen</a>
+    <a href="#preisrechner">Preis & Navigation</a>
     <a href="#kontakt">Kontakt</a>
     <a href="#impressum">Impressum</a>
+    <a href="#datenschutz">Datenschutz</a>
   </nav>
 </header>
 
-<!-- Hero Bereich -->
-<section class="hero" id="start">
-  <h2>Bestelle eine Fahrt für jetzt oder später</h2>
-  <p>Füge deine Fahrtinformationen hinzu, steige ein und schon kann es losgehen.</p>
-  <div class="buttons">
-    <a href="#buchung" class="btn btn-primary">Jetzt buchen</a>
-    <a href="#planen" class="btn btn-secondary">Für später planen</a>
-  </div>
+<section id="start">
+  <h2>Willkommen bei MyTaxiStuttgart</h2>
+  <p>Buche deine Fahrt oder berechne den Preis direkt online.</p>
 </section>
 
-<!-- Leistungen / Vorschläge -->
-<section id="vorschlaege">
-  <h2>Vorschläge</h2>
-  <div class="cards">
-    <div class="card">
-      <img src="https://i.ibb.co/fTdNcK2/istockphoto-1024274518-612x612.jpg" alt="Fahrt" />
-      <h3>Fahrt</h3>
-    </div>
-    <div class="card">
-      <img src="https://i.ibb.co/Qj8LXhxm/reserve-clock.png" alt="Reservieren" />
-      <h3>Reserviere</h3>
-    </div>
-    <div class="card">
-      <img src="https://i.ibb.co/q3FQ6BR5/Bildschirmfoto-2025-07-14-um-12-13-17.png" alt="Kurier" />
-      <h3>Kurier*in</h3>
-    </div>
-    <div class="card">
-      <img src="https://i.ibb.co/gQpNDkV/Bildschirmfoto-2025-07-14-um-12-15-07.png" alt="Essen" />
-      <h3>Essen</h3>
-    </div>
-  </div>
-</section>
-
-<!-- Fahrtpreis Berechnung -->
-<section id="preise-berechnung">
-  <h2>Fahrtpreis berechnen</h2>
+<section id="preisrechner">
+  <h2>Fahrtpreis & Navigation</h2>
   <form id="preisForm">
-    <label for="ziel">Zielort:</label>
-    <input type="text" id="ziel" placeholder="z.B. Berlin" required />
+    <label for="startadresse">Startadresse:</label>
+    <input type="text" id="startadresse" placeholder="z.B. Hauptstr. 1, Stuttgart" required>
 
-    <label for="entfernung">Entfernung (km):</label>
-    <input type="number" id="entfernung" placeholder="z.B. 10" required />
+    <label for="zieladresse">Zieladresse:</label>
+    <input type="text" id="zieladresse" placeholder="z.B. Bahnhofstr. 5, Stuttgart" required>
 
-    <button type="button" onclick="berechnePreis()">Preis berechnen</button>
+    <label for="km">Entfernung (km):</label>
+    <input type="number" step="0.1" id="km" placeholder="z.B. 5.2" required>
+
+    <div class="button-row">
+      <button type="button" onclick="preisBerechnen()">Preis berechnen</button>
+      <button type="button" onclick="googleNavigation()">Navigation starten</button>
+    </div>
   </form>
-  <p id="preisAusgabe" style="font-weight: bold; margin-top: 10px;"></p>
+  <p id="ausgabe" style="font-weight: bold; margin-top: 10px;"></p>
 </section>
 
-<!-- Reservierung -->
-<section id="reservierung">
-  <h2>Reservierung</h2>
-  <form id="reservierungsForm">
-    <label for="reservierung-ziel">Zielort:</label>
-    <input type="text" id="reservierung-ziel" placeholder="z.B. Berlin" required />
-
-    <label for="reservierung-entfernung">Entfernung (km):</label>
-    <input type="number" id="reservierung-entfernung" placeholder="z.B. 10" required />
-
-    <button type="button" onclick="berechnePreisReservierung()">Preis anzeigen</button>
-  </form>
-  <p id="preis-anzeige"></p>
-
-  <h3>Zahlungsart wählen:</h3>
-  <div class="payment-options">
-    <input type="radio" id="zahlung-karte" name="zahlung" value="Kreditkarte" checked />
-    <label for="zahlung-karte">Kreditkarte</label><br/>
-    <input type="radio" id="zahlung-paypal" name="zahlung" value="PayPal" />
-    <label for="zahlung-paypal">PayPal</label><br/>
-    <input type="radio" id="zahlung-bar" name="zahlung" value="Bar" />
-    <label for="zahlung-bar">Barzahlung</label><br/>
-  </div>
-  <button onclick="abschicken()">Reservierung abschließen</button>
-</section>
-
-<!-- Navigation -->
-<section id="navigation">
-  <h2>Navigation starten</h2>
-  <p>Gib den Zielort ein, um eine Navigation zu starten:</p>
-  <input type="text" id="navigationZiel" class="navigation-input" placeholder="Zielort eingeben" />
-  <button onclick="startNavigation()">Navigation starten</button>
-</section>
-
-<!-- Kontakt & Impressum bleiben unverändert -->
 <section id="kontakt">
   <h2>Kontakt</h2>
   <p>📍 Oberdorfstraße 53, 70771 Leinfelden-Echterdingen</p>
@@ -205,57 +144,57 @@
   <p><strong>Aufsichtsbehörde:</strong> Ordnungsamt Leinfelden-Echterdingen</p>
 </section>
 
-<!-- Fußzeile -->
+<section id="datenschutz">
+  <h2>Datenschutzerklärung</h2>
+  <p>
+    Wir nehmen den Schutz Ihrer persönlichen Daten sehr ernst. Personenbezogene Daten werden vertraulich und gemäß der gesetzlichen Datenschutzvorschriften behandelt.
+  </p>
+  <p>
+    Beim Besuch unserer Webseite werden keine personenbezogenen Daten erhoben. Wenn Sie uns per Telefon oder E-Mail kontaktieren, erfolgt die Verarbeitung Ihrer Angaben ausschließlich zur Bearbeitung Ihrer Anfrage.
+  </p>
+  <p>
+    Verantwortlich für den Datenschutz:<br>
+    Vedat Öztürk, Oberdorfstraße 53, 70771 Leinfelden-Echterdingen
+  </p>
+</section>
+
 <footer>
   © 2025 MyTaxiStuttgart – Alle Rechte vorbehalten.
 </footer>
 
-<!-- JavaScript für Funktionen -->
 <script>
-  let aktuellerPreis = 0;
+  function preisBerechnen() {
+    const km = parseFloat(document.getElementById("km").value);
+    const ausgabe = document.getElementById("ausgabe");
 
-  function berechnePreis() {
-    const entfernung = parseFloat(document.getElementById('entfernung').value);
-    if (isNaN(entfernung) || entfernung <= 0) {
-      alert('Bitte gültige Entfernung eingeben.');
+    if (isNaN(km) || km <= 0) {
+      ausgabe.innerText = "Bitte gültige Kilometerzahl eingeben.";
       return;
     }
-    const preisProKm = 2; // Beispielpreis pro km
-    const gesamtpreis = entfernung * preisProKm;
-    document.getElementById('preisAusgabe').innerText = `Der Fahrpreis beträgt: €${gesamtpreis.toFixed(2)}`;
+
+    const grundpreis = 4.30;
+    let preis = grundpreis;
+
+    if (km <= 3) {
+      preis += km * 3.30;
+    } else {
+      preis += 3 * 3.30 + (km - 3) * 2.50;
+    }
+
+    ausgabe.innerText = `Gesamtkosten: €${preis.toFixed(2)}`;
   }
 
-  function berechnePreisReservierung() {
-    const entfernung = parseFloat(document.getElementById('reservierung-entfernung').value);
-    const ziel = document.getElementById('reservierung-ziel').value.trim();
-    if (isNaN(entfernung) || entfernung <= 0 || !ziel) {
-      alert('Bitte Zielort und gültige Entfernung eingeben.');
+  function googleNavigation() {
+    const start = document.getElementById("startadresse").value.trim();
+    const ziel = document.getElementById("zieladresse").value.trim();
+
+    if (!start || !ziel) {
+      alert("Bitte Start- und Zieladresse eingeben.");
       return;
     }
-    const preisProKm = 2;
-    aktuellerPreis = entfernung * preisProKm;
-    document.getElementById('preis-anzeige').innerText = `Der Fahrpreis für ${ziel} beträgt: €${aktuellerPreis.toFixed(2)}`;
-  }
 
-  function abschicken() {
-    const ziel = document.getElementById('reservierung-ziel').value.trim();
-    const zahlungsart = document.querySelector('input[name="zahlung"]:checked').value;
-    if (aktuellerPreis > 0 && ziel) {
-      alert(`Reservierung für ${ziel} erfolgreich!\nZahlungsmethode: ${zahlungsart}\nPreis: €${aktuellerPreis.toFixed(2)}`);
-      // Hier kannst du eine Weiterleitung zu Zahlungsdiensten realisieren
-    } else {
-      alert('Bitte Ziel eingeben und Preis berechnen.');
-    }
-  }
-
-  function startNavigation() {
-    const ziel = document.getElementById('navigationZiel').value.trim();
-    if (ziel) {
-      const url = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(ziel)}`;
-      window.open(url, '_blank');
-    } else {
-      alert('Bitte Zielort eingeben.');
-    }
+    const url = `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(start)}&destination=${encodeURIComponent(ziel)}`;
+    window.open(url, "_blank");
   }
 </script>
 
