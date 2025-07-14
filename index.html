@@ -61,17 +61,19 @@
       margin-bottom: 15px;
       font-size: 1rem;
     }
-    .radio-group-vertical {
+    .radio-group {
       display: flex;
       flex-direction: column;
       gap: 10px;
-      margin-bottom: 15px;
       font-size: 1rem;
+      margin-top: 0;
+      margin-left: 0;
     }
     label.radio {
       display: flex;
       align-items: center;
       gap: 8px;
+      cursor: pointer;
     }
     button {
       padding: 12px 20px;
@@ -130,6 +132,44 @@
       color: #555;
       padding: 20px;
     }
+    /* Anfrage Form Layout */
+    #anfrage form {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      align-items: flex-start;
+    }
+    #anfrage form .form-fields {
+      flex: 1 1 400px;
+      min-width: 280px;
+    }
+    #anfrage form .radio-group-container {
+      flex: 0 0 180px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+    #ausgabe {
+      font-weight: bold;
+      margin-top: 10px;
+      text-align: center;
+      width: 100%;
+    }
+    /* Responsive */
+    @media (max-width: 700px) {
+      #anfrage form {
+        flex-direction: column;
+      }
+      #anfrage form .radio-group-container {
+        flex: none;
+        margin-bottom: 15px;
+      }
+      #anfrage form .form-fields {
+        min-width: 100%;
+      }
+    }
   </style>
 </head>
 <body>
@@ -166,31 +206,30 @@
 <section id="anfrage">
   <h2>Anfrage senden</h2>
   <form id="anfrageForm" onsubmit="return sendeAnfrage(event)">
-    <label for="startadresse">Startadresse:</label>
-    <input type="text" id="startadresse" required>
+    <div class="form-fields">
+      <label for="startadresse">Startadresse:</label>
+      <input type="text" id="startadresse" required>
 
-    <label for="zieladresse">Zieladresse:</label>
-    <input type="text" id="zieladresse" required>
+      <label for="zieladresse">Zieladresse:</label>
+      <input type="text" id="zieladresse" required>
 
-    <label for="datum">Datum:</label>
-    <input type="date" id="datum" required>
+      <label for="datum">Datum:</label>
+      <input type="date" id="datum" required>
 
-    <label for="uhrzeit">Uhrzeit:</label>
-    <input type="time" id="uhrzeit" required>
+      <label for="uhrzeit">Uhrzeit:</label>
+      <input type="time" id="uhrzeit" required>
 
-    <div class="radio-group-vertical">
-      <label class="radio"><input type="radio" name="versand" value="whatsapp" checked> Anfrage per WhatsApp</label>
-      <label class="radio"><input type="radio" name="versand" value="email"> Anfrage per E-Mail</label>
+      <button type="submit">Anfrage senden</button>
     </div>
-
-    <button type="submit">Anfrage senden</button>
+    <div class="radio-group-container">
+      <label>Anfrage per:</label>
+      <div class="radio-group">
+        <label class="radio"><input type="radio" name="versand" value="whatsapp" checked> WhatsApp</label>
+        <label class="radio"><input type="radio" name="versand" value="email"> E-Mail</label>
+      </div>
+    </div>
+    <p id="ausgabe"></p>
   </form>
-  <p id="ausgabe" style="font-weight: bold; margin-top: 10px; text-align:center;"></p>
-
-  <div style="text-align: center; margin-top: 40px;">
-    <h3>Wir akzeptieren folgende Zahlungsmethoden:</h3>
-    <img src="https://i.ibb.co/7JPtd954/Bildschirmfoto-2025-07-14-um-15-23-45.png" alt="Zahlungsmethoden" style="max-width: 400px; width: 100%; height: auto; margin-top: 10px;">
-  </div>
 </section>
 
 <section id="kontakt">
@@ -233,6 +272,13 @@
   </p>
 </section>
 
+<section id="zahlungsmethoden" style="max-width: 1000px; margin: 30px auto; background: #fff; padding: 30px; box-shadow: 0 0 10px rgba(0,0,0,0.1); border-radius: 8px;">
+  <h2 style="text-align: center; color: #222;">Wir akzeptieren folgende Zahlungsmethoden</h2>
+  <div style="text-align: center; margin-top: 20px;">
+    <img src="https://i.ibb.co/7JPtd954/Bildschirmfoto-2025-07-14-um-15-23-45.png" alt="Zahlungsmethoden" style="max-width: 100%; height: auto; border-radius: 8px;" />
+  </div>
+</section>
+
 <footer>
   © 2025 MyTaxiStuttgart
 </footer>
@@ -247,13 +293,13 @@
     const uhrzeit = document.getElementById("uhrzeit").value;
     const versand = document.querySelector('input[name="versand"]:checked').value;
 
-    const text = `Anfrage für Taxi-Fahrt:\nStart: ${start}\nZiel: ${ziel}\nDatum: ${datum}\nUhrzeit: ${uhrzeit}`;
+    const text = `Anfrage für Taxi-Fahrt:%0AStart: ${start}%0AZiel: ${ziel}%0ADatum: ${datum}%0AUhrzeit: ${uhrzeit}`;
 
     if (versand === "whatsapp") {
-      const whatsappLink = `https://wa.me/4917684229016?text=${encodeURIComponent(text)}`;
+      const whatsappLink = `https://wa.me/4917684229016?text=${text}`;
       window.open(whatsappLink, "_blank");
     } else {
-      const mailtoLink = `mailto:taxi.info@mail.de?subject=Taxi-Anfrage&body=${encodeURIComponent(text)}`;
+      const mailtoLink = `mailto:taxi.info@mail.de?subject=Taxi-Anfrage&body=${text}`;
       window.open(mailtoLink, "_blank");
     }
 
