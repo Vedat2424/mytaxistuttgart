@@ -56,6 +56,7 @@
       border: 1px solid #ccc;
       border-radius: 5px;
       margin-bottom: 15px;
+      font-size: 1rem;
     }
     button {
       padding: 12px 20px;
@@ -65,6 +66,8 @@
       border-radius: 5px;
       cursor: pointer;
       margin-right: 10px;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
     }
     button:hover {
       background-color: #0056b3;
@@ -72,6 +75,7 @@
     .button-row {
       display: flex;
       flex-wrap: wrap;
+      margin-bottom: 20px;
     }
     .cards {
       display: grid;
@@ -112,6 +116,7 @@
       text-decoration: none;
       border-radius: 8px;
       font-weight: bold;
+      transition: background-color 0.3s ease;
     }
     .card .btn:hover {
       background: #333;
@@ -121,6 +126,7 @@
       color: #ccc;
       text-align: center;
       padding: 20px;
+      margin-top: 40px;
     }
   </style>
 </head>
@@ -175,22 +181,23 @@
 
 <section id="preisrechner">
   <h2>Fahrtpreis & Navigation</h2>
-  <form id="preisForm">
-    <label for="startadresse">Startadresse:</label>
-    <input type="text" id="startadresse" placeholder="z.B. Hauptstr. 1, Stuttgart" required>
 
-    <label for="zieladresse">Zieladresse:</label>
-    <input type="text" id="zieladresse" placeholder="z.B. Bahnhofstr. 5, Stuttgart" required>
+  <label for="startadresse">Startadresse:</label>
+  <input type="text" id="startadresse" placeholder="z.B. Hauptstr. 1, Stuttgart" />
 
-    <label for="km">Entfernung (km):</label>
-    <input type="number" step="0.1" id="km" placeholder="z.B. 5.2" required>
+  <label for="zieladresse">Zieladresse:</label>
+  <input type="text" id="zieladresse" placeholder="z.B. Bahnhofstr. 5, Stuttgart" />
 
-    <div class="button-row">
-      <button type="button" onclick="preisBerechnen()">Preis berechnen</button>
-      <button type="button" onclick="googleNavigation()">Navigation starten</button>
-    </div>
-  </form>
-  <p id="ausgabe" style="font-weight: bold; margin-top: 10px;"></p>
+  <button type="button" onclick="iframeNeuLaden()">Preis berechnen</button>
+
+  <iframe
+    id="taxiFahrpreisFrame"
+    src="https://www.taxi-fahrpreis.de/fahrpreisrechner"
+    width="100%"
+    height="450"
+    style="border:none; margin-top:15px;"
+    title="Taxi Fahrpreis Rechner"
+  ></iframe>
 </section>
 
 <section id="kontakt">
@@ -204,12 +211,12 @@
   <h2>Impressum</h2>
   <p><strong>Angaben gemäß § 5 TMG:</strong></p>
   <p>
-    Vedat Öztürk<br>
-    Oberdorfstraße 53<br>
+    Vedat Öztürk<br />
+    Oberdorfstraße 53<br />
     70771 Leinfelden-Echterdingen
   </p>
-  <p><strong>Kontakt:</strong><br>
-    Telefon: <a href="tel:+4917684229016">0176 84229016</a><br>
+  <p><strong>Kontakt:</strong><br />
+    Telefon: <a href="tel:+4917684229016">0176 84229016</a><br />
     E-Mail: <a href="mailto:taxi.info@mail.de">taxi.info@mail.de</a>
   </p>
   <p><strong>Unternehmensform:</strong> Einzelunternehmen</p>
@@ -227,7 +234,7 @@
     Beim Besuch unserer Webseite werden keine personenbezogenen Daten erhoben. Wenn Sie uns per Telefon oder E-Mail kontaktieren, erfolgt die Verarbeitung Ihrer Angaben ausschließlich zur Bearbeitung Ihrer Anfrage.
   </p>
   <p>
-    Verantwortlich für den Datenschutz:<br>
+    Verantwortlich für den Datenschutz:<br />
     Vedat Öztürk, Oberdorfstraße 53, 70771 Leinfelden-Echterdingen
   </p>
 </section>
@@ -237,38 +244,15 @@
 </footer>
 
 <script>
-  function preisBerechnen() {
-    const km = parseFloat(document.getElementById("km").value);
-    const ausgabe = document.getElementById("ausgabe");
-
-    if (isNaN(km) || km <= 0) {
-      ausgabe.innerText = "Bitte gültige Kilometerzahl eingeben.";
-      return;
-    }
-
-    const grundpreis = 4.30;
-    let preis = grundpreis;
-
-    if (km <= 3) {
-      preis += km * 3.30;
-    } else {
-      preis += 3 * 3.30 + (km - 3) * 2.50;
-    }
-
-    ausgabe.innerText = `Gesamtkosten: €${preis.toFixed(2)}`;
-  }
-
-  function googleNavigation() {
-    const start = document.getElementById("startadresse").value.trim();
-    const ziel = document.getElementById("zieladresse").value.trim();
-
+  function iframeNeuLaden() {
+    const start = encodeURIComponent(document.getElementById("startadresse").value.trim());
+    const ziel = encodeURIComponent(document.getElementById("zieladresse").value.trim());
     if (!start || !ziel) {
       alert("Bitte Start- und Zieladresse eingeben.");
       return;
     }
-
-    const url = `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(start)}&destination=${encodeURIComponent(ziel)}`;
-    window.open(url, "_blank");
+    const iframe = document.getElementById("taxiFahrpreisFrame");
+    iframe.src = `https://www.taxi-fahrpreis.de/fahrpreisrechner?start=${start}&ziel=${ziel}`;
   }
 </script>
 
