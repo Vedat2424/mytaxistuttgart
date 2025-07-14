@@ -44,12 +44,15 @@
       margin: 30px auto;
       padding: 30px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 8px;
     }
     section h2 {
       font-size: 2rem;
       margin-bottom: 20px;
+      color: #222;
+      text-align: center;
     }
-    input, select, textarea {
+    input, select {
       padding: 10px;
       width: 100%;
       box-sizing: border-box;
@@ -57,8 +60,6 @@
       border-radius: 5px;
       margin-bottom: 15px;
       font-size: 1rem;
-      font-family: inherit;
-      resize: vertical;
     }
     button {
       padding: 12px 20px;
@@ -70,7 +71,6 @@
       margin-right: 10px;
       font-size: 1rem;
       font-weight: bold;
-      transition: background-color 0.3s ease;
     }
     button:hover {
       background-color: #0056b3;
@@ -78,7 +78,6 @@
     .button-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
     }
     .cards {
       display: grid;
@@ -93,6 +92,9 @@
       text-align: center;
       box-shadow: 0 2px 8px rgba(0,0,0,0.05);
       transition: transform 0.2s ease;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #333;
     }
     .card:hover {
       transform: scale(1.02);
@@ -105,10 +107,12 @@
     .card h3 {
       margin: 10px 0 5px;
       font-size: 1.3rem;
+      color: #222;
     }
     .card p {
       font-size: 0.95rem;
       color: #555;
+      margin-bottom: 10px;
     }
     .card .btn {
       display: inline-block;
@@ -119,6 +123,7 @@
       text-decoration: none;
       border-radius: 8px;
       font-weight: bold;
+      font-size: 1rem;
     }
     .card .btn:hover {
       background: #333;
@@ -128,10 +133,29 @@
       color: #ccc;
       text-align: center;
       padding: 20px;
+      margin-top: 40px;
+      border-radius: 0 0 8px 8px;
     }
-    #status {
-      margin-top: 15px;
-      font-weight: bold;
+    /* Spezieller Startbereich-Stil */
+    #start p.intro-text {
+      font-size: 1.2rem;
+      color: #666;
+      margin-bottom: 15px;
+      font-style: italic;
+      text-align: center;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    /* Datenschutz kleiner */
+    #datenschutz {
+      font-size: 0.9rem;
+      color: #555;
+      padding: 20px;
+    }
+    #datenschutz h2 {
+      color: #333;
+      text-align: center;
     }
   </style>
 </head>
@@ -141,8 +165,8 @@
   <h1>MyTaxiStuttgart</h1>
   <nav>
     <a href="#start">Start</a>
-    <a href="#vorschlaege">Vorschläge</a>
-    <a href="#anfrage">Anfrage</a>
+    <a href="#service">Unser Service</a>
+    <a href="#preisrechner">Anfrage senden</a>
     <a href="#kontakt">Kontakt</a>
     <a href="#impressum">Impressum</a>
     <a href="#datenschutz">Datenschutz</a>
@@ -150,58 +174,37 @@
 </header>
 
 <section id="start">
+  <p class="intro-text">Deinem Experten für Taxi- und Flughafentransfer in Stuttgart. Wir bringen dich zuverlässig und pünktlich ans Ziel, egal ob in Stuttgart oder Umgebung.</p>
   <h2>Willkommen bei MyTaxiStuttgart</h2>
-  <p>Buche deine Fahrt oder sende eine Anfrage direkt online.</p>
 </section>
 
-<section id="vorschlaege">
-  <h2>Vorschläge</h2>
+<section id="service">
+  <h2>Unser Service für Sie</h2>
   <div class="cards">
-    <div class="card">
-      <img src="https://i.ibb.co/fTdNcK2/istockphoto-1024274518-612x612.jpg" alt="Fahrt" />
-      <h3>Fahrt</h3>
-      <p>Buche deine Fahrt und komme sicher und pünktlich an dein Ziel.</p>
-      <a href="#anfrage" class="btn">Anfrage senden</a>
-    </div>
-    <div class="card">
-      <img src="https://i.ibb.co/Qj8LXhxm/reserve-clock.png" alt="Reservieren" />
-      <h3>Reserviere</h3>
-      <p>Plane deine Fahrt im Voraus, damit du entspannt losfahren kannst.</p>
-      <a href="#anfrage" class="btn">Anfrage senden</a>
-    </div>
-    <div class="card">
-      <img src="https://i.ibb.co/q3FQ6BR5/Bildschirmfoto-2025-07-14-um-12-13-17.png" alt="Kurier" />
-      <h3>Kurier*in</h3>
-      <p>Schnelle Lieferfahrten direkt mit dem Taxi – lokal und zuverlässig.</p>
-      <a href="#kontakt" class="btn">Kontakt</a>
-    </div>
-    <div class="card">
-      <img src="https://i.ibb.co/gQpNDkV/Bildschirmfoto-2025-07-14-um-12-15-07.png" alt="Krankenfahrten" />
-      <h3>Krankenfahrten</h3>
-      <p>Wir bringen dich sicher zu Arztterminen oder zur Klinik – mit Rücksicht & Komfort.</p>
-      <a href="#kontakt" class="btn">Kontakt</a>
-    </div>
+    <div class="card">Personenbeförderung</div>
+    <div class="card">Flughafentransfer</div>
+    <div class="card">Krankenfahrten & Transporte</div>
+    <div class="card">Kurierfahrten</div>
+    <div class="card">Chauffeurdienste</div>
+    <div class="card">Taxi Service</div>
   </div>
 </section>
 
-<section id="anfrage">
+<section id="preisrechner">
   <h2>Anfrage senden</h2>
-  <form id="anfrageForm" onsubmit="return false;">
+  <form id="preisForm" onsubmit="return sendeAnfrage(event)">
     <label for="startadresse">Startadresse:</label>
     <input type="text" id="startadresse" placeholder="z.B. Hauptstr. 1, Stuttgart" required>
 
     <label for="zieladresse">Zieladresse:</label>
     <input type="text" id="zieladresse" placeholder="z.B. Bahnhofstr. 5, Stuttgart" required>
 
-    <label for="datum">Datum & Uhrzeit:</label>
-    <input type="datetime-local" id="datum" required>
+    <label for="datum">Datum:</label>
+    <input type="date" id="datum" required>
 
-    <div class="button-row">
-      <button type="button" onclick="sendeWhatsApp()">WhatsApp senden</button>
-      <button type="button" onclick="sendeEmail()">E-Mail senden</button>
-    </div>
+    <button type="submit">Anfrage senden</button>
   </form>
-  <p id="status"></p>
+  <p id="ausgabe" style="font-weight: bold; margin-top: 10px; text-align:center;"></p>
 </section>
 
 <section id="kontakt">
@@ -248,55 +251,37 @@
 </footer>
 
 <script>
-  const whatsappNummer = '4917684229016'; // Deine WhatsApp-Nummer im internationalen Format ohne "+"
+  function sendeAnfrage(event) {
+    event.preventDefault();
 
-  function sendeWhatsApp() {
-    const start = document.getElementById('startadresse').value.trim();
-    const ziel = document.getElementById('zieladresse').value.trim();
-    const datum = document.getElementById('datum').value;
-    const status = document.getElementById('status');
-
-    if (!start || !ziel || !datum) {
-      alert('Bitte alle Felder ausfüllen.');
-      return;
-    }
-
-    const text = 
-      `Hallo MyTaxiStuttgart,%0A` +
-      `ich möchte eine Fahrt anfragen:%0A` +
-      `Start: ${encodeURIComponent(start)}%0A` +
-      `Ziel: ${encodeURIComponent(ziel)}%0A` +
-      `Datum: ${encodeURIComponent(datum)}`;
-
-    const url = `https://wa.me/${whatsappNummer}?text=${text}`;
-    window.open(url, '_blank');
-    status.textContent = 'WhatsApp Anfrage geöffnet.';
-  }
-
-  function sendeEmail() {
-    const start = document.getElementById('startadresse').value.trim();
-    const ziel = document.getElementById('zieladresse').value.trim();
-    const datum = document.getElementById('datum').value;
-    const status = document.getElementById('status');
+    const start = document.getElementById("startadresse").value.trim();
+    const ziel = document.getElementById("zieladresse").value.trim();
+    const datum = document.getElementById("datum").value;
 
     if (!start || !ziel || !datum) {
-      alert('Bitte alle Felder ausfüllen.');
-      return;
+      alert("Bitte alle Felder ausfüllen.");
+      return false;
     }
 
-    const subject = encodeURIComponent('Fahrtenanfrage MyTaxiStuttgart');
-    const body = encodeURIComponent(
-      `Hallo MyTaxiStuttgart,\n\n` +
-      `ich möchte eine Fahrt anfragen:\n` +
-      `Start: ${start}\n` +
-      `Ziel: ${ziel}\n` +
-      `Datum: ${datum}\n\n` +
-      `Bitte um Rückmeldung.`
-    );
+    const text = `Anfrage für Taxi-Fahrt:\nStartadresse: ${start}\nZieladresse: ${ziel}\nDatum: ${datum}`;
 
-    const mailtoLink = `mailto:taxi.info@mail.de?subject=${subject}&body=${body}`;
+    // Email senden via mailto
+    const mailtoLink = `mailto:taxi.info@mail.de?subject=${encodeURIComponent("Taxi-Anfrage")}&body=${encodeURIComponent(text)}`;
+    
+    // WhatsApp senden (optional, hier Beispielnummer +4917684229016)
+    const whatsappLink = `https://wa.me/4917684229016?text=${encodeURIComponent(text)}`;
+
+    // Öffnet Email-Client
     window.location.href = mailtoLink;
-    status.textContent = 'E-Mail Anfrage geöffnet.';
+
+    // Optional: Öffnet WhatsApp in neuem Tab nach Email-Client (hier 2 Sekunden Verzögerung)
+    // setTimeout(() => window.open(whatsappLink, "_blank"), 2000);
+
+    // Ausgabe bestätigen
+    const ausgabe = document.getElementById("ausgabe");
+    ausgabe.innerText = "Deine Anfrage wurde vorbereitet. Bitte sende die E-Mail in deinem Mailprogramm ab.";
+
+    return false;
   }
 </script>
 
