@@ -27,18 +27,14 @@
     }
     header h1 {
       margin: 0;
-      font-size: 2rem;
-    }
-    nav {
-      display: flex;
-      flex-wrap: wrap;
+      font-size: 1.8rem; /* etwas kleiner */
     }
     nav a {
       color: #fff;
       text-decoration: none;
-      margin: 5px 10px;
+      margin: 0 12px;
       font-weight: bold;
-      font-size: 1rem;
+      font-size: 1rem; /* kleiner als h1 */
     }
     nav a:hover {
       text-decoration: underline;
@@ -57,7 +53,7 @@
       color: #222;
       text-align: center;
     }
-    input, select {
+    input, select, textarea {
       padding: 10px;
       width: 100%;
       box-sizing: border-box;
@@ -65,6 +61,7 @@
       border-radius: 5px;
       margin-bottom: 15px;
       font-size: 1rem;
+      resize: vertical;
     }
     .radio-group-vertical {
       display: flex;
@@ -80,16 +77,22 @@
       gap: 10px;
       font-size: 1rem;
       color: #333;
+      cursor: pointer;
     }
     button {
-      padding: 12px 20px;
+      padding: 14px 20px;
       background-color: #007bff;
       color: #fff;
       border: none;
       border-radius: 5px;
       cursor: pointer;
-      font-size: 1rem;
+      font-size: 1.1rem;
       font-weight: bold;
+      width: 100%;
+      max-width: 320px;
+      display: block;
+      margin: 0 auto;
+      transition: background-color 0.3s ease;
     }
     button:hover {
       background-color: #0056b3;
@@ -121,6 +124,7 @@
       padding: 20px;
       margin-top: 40px;
       border-radius: 0 0 8px 8px;
+      font-size: 0.9rem;
     }
     #start p.intro-text {
       font-size: 1.2rem;
@@ -136,6 +140,36 @@
       font-size: 0.9rem;
       color: #555;
       padding: 20px;
+    }
+
+    /* Mobile Anpassungen */
+    @media (max-width: 600px) {
+      header {
+        justify-content: center;
+        text-align: center;
+      }
+      header h1 {
+        font-size: 1.6rem;
+        margin-bottom: 10px;
+      }
+      nav a {
+        margin: 0 8px;
+        font-size: 0.9rem;
+        display: inline-block;
+        padding: 6px 5px;
+      }
+      section {
+        margin: 15px 15px;
+        padding: 20px;
+      }
+      section h2 {
+        font-size: 1.6rem;
+      }
+      button {
+        max-width: 100%;
+        padding: 14px;
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
@@ -187,7 +221,7 @@
 
     <div class="radio-group-vertical">
       <label class="radio"><input type="radio" name="versand" value="whatsapp" checked> WhatsApp</label>
-      <label class="radio"><input type="radio" name="versand" value="email"> Email</label>
+      <label class="radio"><input type="radio" name="versand" value="email"> E-Mail</label>
     </div>
 
     <button type="submit">Anfrage senden</button>
@@ -198,6 +232,23 @@
     <h3>Wir akzeptieren folgende Zahlungsmethoden:</h3>
     <img src="https://i.ibb.co/W493YLLP/Bildschirmfoto-2025-07-14-um-15-31-58.png" alt="Zahlungsmethoden" style="max-width: 400px; width: 100%; height: auto; margin-top: 10px;">
   </div>
+</section>
+
+<section id="angebot">
+  <h2>Angebot anfragen</h2>
+  <form id="angebotForm" onsubmit="return sendeAngebot(event)">
+    <label for="kundeName">Name:</label>
+    <input type="text" id="kundeName" required>
+
+    <label for="kundeEmail">E-Mail:</label>
+    <input type="email" id="kundeEmail" required>
+
+    <label for="kundeNachricht">Nachricht:</label>
+    <textarea id="kundeNachricht" rows="4" required></textarea>
+
+    <button type="submit">Anfrage senden</button>
+  </form>
+  <p id="angebotAusgabe" style="font-weight: bold; margin-top: 10px; text-align:center;"></p>
 </section>
 
 <section id="kontakt">
@@ -265,6 +316,22 @@
     }
 
     document.getElementById("ausgabe").innerText = "Anfrage wurde vorbereitet. Bitte Nachricht abschicken.";
+    return false;
+  }
+
+  function sendeAngebot(event) {
+    event.preventDefault();
+
+    const name = document.getElementById("kundeName").value.trim();
+    const email = document.getElementById("kundeEmail").value.trim();
+    const nachricht = document.getElementById("kundeNachricht").value.trim();
+
+    const text = `Angebotsanfrage:\nName: ${name}\nE-Mail: ${email}\nNachricht: ${nachricht}`;
+
+    const mailtoLink = `mailto:taxi.info@mail.de?subject=Angebotsanfrage&body=${encodeURIComponent(text)}`;
+    window.open(mailtoLink, "_blank");
+
+    document.getElementById("angebotAusgabe").innerText = "Anfrage wurde vorbereitet. Bitte Nachricht abschicken.";
     return false;
   }
 </script>
