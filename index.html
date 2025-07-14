@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="google-site-verification" content="bH4wX1kJUivPmujnYfd072-RCkjTxy5NaV9McCrxLDc" />
   <title>MyTaxiStuttgart – Fahrdienst buchen</title>
   <meta name="description" content="Taxi buchen in Stuttgart – Schnell, einfach und zuverlässig mit MyTaxiStuttgart. Jetzt Fahrt oder Krankenfahrt reservieren.">
   <meta name="author" content="Vedat Öztürk">
@@ -14,7 +15,7 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: #f0f0f0;
       color: #333;
-      font-size: 1.05rem;
+      font-size: 1.1rem;
     }
     header {
       background: #000;
@@ -33,8 +34,8 @@
       color: #fff;
       text-decoration: none;
       margin: 0 10px;
-      font-size: 1rem;
       font-weight: bold;
+      font-size: 1.1rem;
     }
     nav a:hover {
       text-decoration: underline;
@@ -48,7 +49,7 @@
       border-radius: 8px;
     }
     section h2 {
-      font-size: 1.8rem;
+      font-size: 2rem;
       margin-bottom: 20px;
       color: #222;
       text-align: center;
@@ -133,14 +134,9 @@
       color: #555;
       padding: 20px;
     }
-    @media (max-width: 600px) {
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      nav a {
-        margin: 5px 0;
-      }
+    #kontakt a {
+      color: inherit;
+      text-decoration: none;
     }
   </style>
 </head>
@@ -159,7 +155,7 @@
 </header>
 
 <section id="start">
-  <p class="intro-text">Deinem Experten für Taxi- und Flughafentransfer in Stuttgart. Wir bringen dich zuverlässig und pünktlich ans Ziel, egal ob in Stuttgart oder Umgebung.</p>
+  <p class="intro-text">Dein Experte für Taxi- und Flughafentransfer in Stuttgart. Wir bringen dich zuverlässig und pünktlich ans Ziel – in Stuttgart und Umgebung.</p>
   <h2>Willkommen bei MyTaxiStuttgart</h2>
 </section>
 
@@ -190,9 +186,6 @@
     <label for="uhrzeit">Uhrzeit:</label>
     <input type="time" id="uhrzeit" required>
 
-    <label for="email">Ihre Email-Adresse:</label>
-    <input type="email" id="email" required placeholder="z.B. name@mail.de">
-
     <div class="radio-group-vertical">
       <label class="radio"><input type="radio" name="versand" value="whatsapp" checked> WhatsApp</label>
       <label class="radio"><input type="radio" name="versand" value="email"> E-Mail</label>
@@ -210,11 +203,9 @@
 
 <section id="kontakt">
   <h2>Kontakt</h2>
-  <div>
-    📍 Oberdorfstraße 53, 70771 Leinfelden-Echterdingen<br>
-    📞 0176 84229016<br>
-    📧 taxi.info@mail.de
-  </div>
+  <p>📍 Oberdorfstraße 53, 70771 Leinfelden-Echterdingen</p>
+  <p>📞 0176 84229016</p>
+  <p>📧 taxi.info@mail.de</p>
 </section>
 
 <section id="impressum">
@@ -262,10 +253,9 @@
     const ziel = document.getElementById("zieladresse").value.trim();
     const datum = document.getElementById("datum").value;
     const uhrzeit = document.getElementById("uhrzeit").value;
-    const email = document.getElementById("email").value.trim();
     const versand = document.querySelector('input[name="versand"]:checked').value;
 
-    const text = `Anfrage für Taxi-Fahrt:\nStart: ${start}\nZiel: ${ziel}\nDatum: ${datum}\nUhrzeit: ${uhrzeit}\nE-Mail: ${email}`;
+    const text = `Anfrage für Taxi-Fahrt:\nStart: ${start}\nZiel: ${ziel}\nDatum: ${datum}\nUhrzeit: ${uhrzeit}`;
 
     if (versand === "whatsapp") {
       const whatsappLink = `https://wa.me/4917684229016?text=${encodeURIComponent(text)}`;
